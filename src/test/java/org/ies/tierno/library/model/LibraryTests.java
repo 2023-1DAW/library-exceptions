@@ -53,4 +53,26 @@ public class LibraryTests {
     public void findMemberNotFoundTest() throws MemberNotFoundException {
         Member member = library.findMember("sdflkjfsdlkj");
     }
+
+    @Test
+    public void existBookLendTest() throws BookNotFoundException, MemberNotFoundException {
+        boolean exists = library.existLend("00001", "00001X");
+        Assert.assertTrue(exists);
+    }
+
+    @Test
+    public void notExistBookLendTest() throws BookNotFoundException, MemberNotFoundException {
+        boolean exists = library.existLend("00001", "00002Y");
+        Assert.assertFalse(exists);
+    }
+
+    @Test(expected = MemberNotFoundException.class)
+    public void existBookLendMemberNotFoundTest() throws BookNotFoundException, MemberNotFoundException {
+        library.existLend("00001", "00002");
+    }
+
+    @Test(expected = BookNotFoundException.class)
+    public void existBookLendBookNotFoundTest() throws BookNotFoundException, MemberNotFoundException {
+        library.existLend("000021", "00002Y");
+    }
 }

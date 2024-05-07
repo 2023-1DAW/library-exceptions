@@ -32,4 +32,15 @@ public class Library {
         }
         throw new MemberNotFoundException(nif);
     }
+
+    public boolean existLend(String isbn, String nif) throws BookNotFoundException, MemberNotFoundException {
+        findMember(nif);
+        findBook(isbn);
+        for(var bookLend : bookLends) {
+            if(bookLend.getIsbn().equalsIgnoreCase(isbn) && bookLend.getMemberNif().equalsIgnoreCase(nif)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
