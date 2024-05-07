@@ -1,6 +1,7 @@
 package org.ies.tierno.library.model;
 
 import org.ies.tierno.library.exceptions.BookNotFoundException;
+import org.ies.tierno.library.exceptions.MemberNotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,8 +17,8 @@ public class LibraryTests {
                     new Book("00002", "Programación en Kotlin", "Peppa Pig", List.of("Informática", "Kotlin"))
             ),
             List.of(
-                    new Member("00001X", "Bob","Esponja", 1, 28000),
-                    new Member("00002Y", "George","Pig", 2, 28000)
+                    new Member("00001X", "Bob", "Esponja", 1, 28000),
+                    new Member("00002Y", "George", "Pig", 2, 28000)
             ),
             List.of(
                     new BookLend("00001", "00001X", new Date(), new Date())
@@ -37,5 +38,19 @@ public class LibraryTests {
     @Test(expected = BookNotFoundException.class)
     public void findBookNotFoundTest() throws BookNotFoundException {
         Book book = library.findBook("1");
+    }
+
+    @Test
+    public void findMemberTest() throws MemberNotFoundException {
+        Member member = library.findMember("00001X");
+        Assert.assertEquals(
+                new Member("00002X", "Bob", "Esponja", 1, 28000),
+                member);
+    }
+
+
+    @Test(expected = MemberNotFoundException.class)
+    public void findMemberNotFoundTest() throws MemberNotFoundException {
+        Member member = library.findMember("sdflkjfsdlkj");
     }
 }

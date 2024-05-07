@@ -3,6 +3,7 @@ package org.ies.tierno.library.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.ies.tierno.library.exceptions.BookNotFoundException;
+import org.ies.tierno.library.exceptions.MemberNotFoundException;
 
 import java.util.List;
 
@@ -21,5 +22,14 @@ public class Library {
             }
         }
         throw new BookNotFoundException(isbn);
+    }
+
+    public Member findMember(String nif) throws MemberNotFoundException {
+        for(var member: members) {
+            if(member.getNif().equalsIgnoreCase(nif)) {
+                return member;
+            }
+        }
+        throw new MemberNotFoundException(nif);
     }
 }
