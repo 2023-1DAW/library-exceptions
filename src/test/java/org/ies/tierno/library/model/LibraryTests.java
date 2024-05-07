@@ -42,9 +42,9 @@ public class LibraryTests {
 
     @Test
     public void findMemberTest() throws MemberNotFoundException {
-        Member member = library.findMember("00002X");
+        Member member = library.findMember("00001X");
         Assert.assertEquals(
-                new Member("00002X", "Bob", "Esponja", 1, 28000),
+                new Member("00001X", "Bob", "Esponja", 1, 28000),
                 member);
     }
 
