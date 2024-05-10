@@ -6,14 +6,24 @@ import org.ies.tierno.library.exceptions.BookNotFoundException;
 import org.ies.tierno.library.exceptions.MemberNotFoundException;
 
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 public class Library {
     private String name;
-    private List<Book> books;
+    private TreeSet<Book> books;
     private List<Member> members;
     private List<BookLend> bookLends;
+
+    public List<String> findAuthorTitles(String author) {
+        return books
+                .stream()
+                .filter(book -> book.getAuthor().equals(author))
+                .map(book -> book.getTitle())
+                .collect(Collectors.toList());
+    }
 
     public Book findBook(String isbn) throws BookNotFoundException {
         for(var book:books) {
@@ -25,6 +35,7 @@ public class Library {
     }
 
     public Member findMember(String nif) throws MemberNotFoundException {
+
         for(var member: members) {
             if(member.getNif().equalsIgnoreCase(nif)) {
                 return member;
