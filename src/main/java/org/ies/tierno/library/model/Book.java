@@ -12,7 +12,7 @@ public class Book implements Comparable<Book> {
     private String isbn;
     private String title;
     private String author;
-    private Set<String> genres;
+    private List<String> genres;
 
     public boolean hasGenre(String genre) {
         return genres.contains(genre);

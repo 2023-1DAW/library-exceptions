@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class Library {
     private String name;
-    private TreeSet<Book> books;
+    private List<Book> books;
     private List<Member> members;
     private List<BookLend> bookLends;
 
