@@ -13,6 +13,7 @@ import java.util.Scanner;
 @AllArgsConstructor
 public class BookReader implements Reader<Book> {
     private static final Logger log = LoggerFactory.getLogger(BookReader.class);
+
     private final Scanner scanner;
 
     @Override
@@ -20,8 +21,10 @@ public class BookReader implements Reader<Book> {
         log.info("Inroduce los datos del libro");
         log.info("ISBN:");
         String isbn = scanner.nextLine();
+
         log.info("Título:");
         String title = scanner.nextLine();
+
         log.info("Autor:");
         String author = scanner.nextLine();
 
@@ -29,7 +32,7 @@ public class BookReader implements Reader<Book> {
 
         List<String> genres = new ArrayList<>();
         for (int i = 0; i < numGenres; i++) {
-            log.info("Género " + i +":");
+            log.info("Género " + i + ":");
             genres.add(scanner.nextLine());
         }
 
@@ -39,10 +42,10 @@ public class BookReader implements Reader<Book> {
     private int readNumGenres() {
         log.info("¿Cuántos géneros tiene el libro?");
         int numGenres = -1;
-        while(numGenres < 0) {
+        while (numGenres < 0) {
             try {
                 numGenres = scanner.nextInt();
-                if(numGenres < 0) {
+                if (numGenres < 0) {
                     log.info("Valor inválido, debe ser un número entero positivo");
                 }
             } catch (InputMismatchException e) {

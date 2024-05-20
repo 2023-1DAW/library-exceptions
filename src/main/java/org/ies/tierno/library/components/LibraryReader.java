@@ -16,6 +16,7 @@ import java.util.Scanner;
 @AllArgsConstructor
 public class LibraryReader implements Reader<Library> {
     private static final Logger log = LoggerFactory.getLogger(LibraryReader.class);
+
     private final Scanner scanner;
     private final Reader<Book> bookReader;
     private final Reader<Member> memberReader;
